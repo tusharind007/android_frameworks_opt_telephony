@@ -592,8 +592,8 @@ public class RIL extends BaseCommands implements CommandsInterface {
                 Context.CONNECTIVITY_SERVICE);
         mIsMobileNetworkSupported = cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE);
 
-        mRadioResponse = new RadioResponse(this);
-        mRadioIndication = new RadioIndication(this);
+        mRadioResponse = createRadioResponse(this);
+        mRadioIndication = createRadioIndication(this);
         mOemHookResponse = new OemHookResponse(this);
         mOemHookIndication = new OemHookIndication(this);
         mRilHandler = new RilHandler();
@@ -631,6 +631,14 @@ public class RIL extends BaseCommands implements CommandsInterface {
                 mContext.getContentResolver(),
                 Settings.Global.ENABLE_RADIO_BUG_DETECTION,
                 1) != 0;
+    }
+
+    protected RadioResponse createRadioResponse(RIL ril) {
+        return new RadioResponse(ril);
+    }
+
+    protected RadioIndication createRadioIndication(RIL ril) {
+        return new RadioIndication(ril);
     }
 
     @Override
