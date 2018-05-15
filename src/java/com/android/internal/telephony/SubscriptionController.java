@@ -955,9 +955,6 @@ public class SubscriptionController extends ISub.Stub {
                         resolver.update(SubscriptionManager.CONTENT_URI, value,
                                 SubscriptionManager.UNIQUE_KEY_SUBSCRIPTION_ID +
                                         "=" + Long.toString(subId), null);
-
-                        // Refresh the Cache of Active Subscription Info List
-                        refreshCachedActiveSubscriptionInfoList();
                     }
 
                     if (DBG) logdl("[addSubInfoRecord] Record already exists");
@@ -1051,11 +1048,11 @@ public class SubscriptionController extends ISub.Stub {
                         SubscriptionManager.UNIQUE_KEY_SUBSCRIPTION_ID +
                                 "=" + Long.toString(subId), null);
 
-                // Refresh the Cache of Active Subscription Info List
-                refreshCachedActiveSubscriptionInfoList();
-
                 if (DBG) logdl("[addSubInfoRecord] sim name = " + nameToSet);
             }
+
+            // Refresh the Cache of Active Subscription Info List
+            refreshCachedActiveSubscriptionInfoList();
 
             // Once the records are loaded, notify DcTracker
             sPhones[slotIndex].updateDataConnectionTracker();
@@ -1099,9 +1096,6 @@ public class SubscriptionController extends ISub.Stub {
         }
 
         Uri uri = resolver.insert(SubscriptionManager.CONTENT_URI, value);
-
-        // Refresh the Cache of Active Subscription Info List
-        refreshCachedActiveSubscriptionInfoList();
 
         return uri;
     }
