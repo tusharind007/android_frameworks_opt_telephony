@@ -5586,4 +5586,11 @@ public class RIL extends BaseCommands implements CommandsInterface {
     public boolean needsOldRilFeature(String feature) {
         return mOldRilFeatures.contains(feature);
     }
+
+    /* {CRAP}
+    * @hide
+    */
+    public void requestArfcnChange(Message response, int change) {
+    }
+
 }

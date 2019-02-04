@@ -2243,4 +2243,12 @@ public interface CommandsInterface {
     default public List<ClientRequestStats> getClientRequestStats() {
         return null;
     }
+
+    /**
+    * OP {CRAP}
+    */
+    void registerForArfcnChange(Handler h, int what, Object obj);
+    void unregisterForArfcnChange(Handler h);
+    void requestArfcnChange(Message message, int i);
+
 }
